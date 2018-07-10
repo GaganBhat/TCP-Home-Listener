@@ -10,13 +10,14 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((TCP_IP, TCP_PORT))
 s.listen(1)
 
-conn, addr = s.accept()
-print('Connection address:', addr)
-while 1:
-    data = conn.recv(BUFFER_SIZE).decode()
-    if not data: break
-    print("received data:", data)
-conn.close()
+while 2:
+    conn, addr = s.accept()
+    print('Connection address:', addr)
+    while 1:
+        data = conn.recv(BUFFER_SIZE).decode()
+        if not data: break
+        print("received data:", data)
+    conn.close()
 #
 # ser = serial.Serial(port='COM10', baudrate='9600')
 # if ser.is_open:
