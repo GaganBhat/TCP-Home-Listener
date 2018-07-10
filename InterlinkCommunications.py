@@ -2,8 +2,8 @@ import serial
 import time
 import socket
 
-TCP_IP = '192.168.1.169'
-TCP_PORT = 5000
+TCP_IP = '192.168.1.6'
+TCP_PORT = 5005
 BUFFER_SIZE = 20  # Normally 1024, but we want fast response
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
