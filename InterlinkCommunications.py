@@ -2,6 +2,8 @@ import serial
 import time
 import socket
 
+ser = serial.Serial(port='COM10', baudrate='9600')
+
 TCP_IP = '192.168.1.6'
 TCP_PORT = 5005
 BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
@@ -17,9 +19,24 @@ while 2:
         data = conn.recv(BUFFER_SIZE).decode()
         if not data: break
         print("received data:", data)
+        if data == "EnableRelay" :
+            if ser.is_open:
+                ser.write(b'1')
+            else:
+                ser.open()
+                time.sleep(2)
+                ser.write(b'1')
+        else :
+            if ser.is_open:
+                ser.write(b'0')
+            else:
+                ser.open()
+                time.sleep(2)
+                ser.write(b'0')
+
+
     conn.close()
-#
-# ser = serial.Serial(port='COM10', baudrate='9600')
+
 # if ser.is_open:
 #     time.sleep(2)
 #     ser.write(b'1')
